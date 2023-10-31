@@ -19,9 +19,7 @@ function App() {
   }, []);
 
   console.log(movies);
-  const onChange = () => {
-    setLoading();
-  };
+
   return (
     <div>
       {loading ? (
@@ -30,8 +28,28 @@ function App() {
         <div>
           {" "}
           {movies.map((i) => (
-            <div key={i.id}>{i.title}</div>
-          ))}{" "}
+            <div key={i.id}>
+              <h1>{i.title}</h1>
+              <img alt="Movie Poster" src={i.medium_cover_image} />
+              <ul>
+                {i.genres.map((g) => (
+                  <li key={g}>{g}</li>
+                ))}
+              </ul>
+              <p>Year released: {i.year}</p>
+              <p>
+                Rate: <strong>{i.rating}</strong>
+              </p>
+              <p>
+                Runtime:<strong> {i.runtime}</strong>
+              </p>
+              <p>
+                Summary:{" "}
+                <strong>{i.summary === true ? "N/A" : i.summary}</strong>
+              </p>
+              <hr />
+            </div>
+          ))}
         </div>
       )}
     </div>
